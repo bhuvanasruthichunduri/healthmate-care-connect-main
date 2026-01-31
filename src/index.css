@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --background: 195 30% 96%;
+    --foreground: 215 25% 15%;
+
+    /* Card with transparency */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    /* Primary - Teal/Health Green */
+    --primary: 162 63% 41%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Light Teal */
+    --secondary: 175 77% 94%;
+    --secondary-foreground: 162 63% 31%;
+
+    /* Health Blue */
+    --health-blue: 217 91% 60%;
+    --health-blue-foreground: 0 0% 100%;
+
+    /* Health Green */
+    --health-green: 160 84% 39%;
+    --health-green-foreground: 0 0% 100%;
+
+    /* Warning Yellow */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Danger Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Muted */
+    --muted: 195 20% 94%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent */
+    --accent: 162 63% 95%;
+    --accent-foreground: 162 63% 31%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Border & Input */
+    --border: 195 20% 88%;
+    --input: 195 20% 88%;
+    --ring: 162 63% 41%;
+
+    --radius: 0.75rem;
+
+    /* Overlay */
+    --overlay: 0 0% 0% / 0.4;
+
+    /* Card Glass Effect */
+    --card-glass: 0 0% 100% / 0.92;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 162 63% 41%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 162 63% 95%;
+    --sidebar-accent-foreground: 162 63% 31%;
+    --sidebar-border: 195 20% 88%;
+    --sidebar-ring: 162 63% 41%;
+  }
+
+  .dark {
+    --background: 215 25% 10%;
+    --foreground: 195 30% 96%;
+
+    --card: 215 25% 15%;
+    --card-foreground: 195 30% 96%;
+
+    --primary: 162 63% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 162 63% 70%;
+
+    --muted: 215 25% 20%;
+    --muted-foreground: 195 20% 65%;
+
+    --accent: 215 25% 20%;
+    --accent-foreground: 162 63% 70%;
+
+    --popover: 215 25% 15%;
+    --popover-foreground: 195 30% 96%;
+
+    --border: 215 25% 25%;
+    --input: 215 25% 25%;
+    --ring: 162 63% 45%;
+
+    --card-glass: 215 25% 15% / 0.92;
+
+    --sidebar-background: 215 25% 10%;
+    --sidebar-foreground: 195 30% 96%;
+    --sidebar-primary: 162 63% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 20%;
+    --sidebar-accent-foreground: 162 63% 70%;
+    --sidebar-border: 215 25% 25%;
+    --sidebar-ring: 162 63% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  /* Background Layout */
+  .health-background {
+    @apply fixed inset-0 bg-cover bg-center bg-no-repeat;
+    z-index: -2;
+  }
+
+  .health-overlay {
+    @apply fixed inset-0;
+    background: hsl(var(--overlay));
+    z-index: -1;
+  }
+
+  /* Glass Card Effect */
+  .glass-card {
+    background: hsl(var(--card-glass));
+    @apply backdrop-blur-sm rounded-2xl shadow-xl border border-white/20;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium
+           transition-all duration-300 hover:shadow-lg hover:scale-[1.02]
+           active:scale-[0.98] flex items-center justify-center gap-2;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--health-green)));
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-xl font-medium
+           transition-all duration-300 hover:bg-primary hover:text-primary-foreground
+           border border-primary/20;
+  }
+
+  /* Warning Button */
+  .btn-warning {
+    @apply px-6 py-3 rounded-xl font-medium text-white
+           transition-all duration-300 hover:shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--warning)), hsl(38 92% 45%));
+  }
+
+  /* Danger Button */
+  .btn-danger {
+    @apply px-6 py-3 rounded-xl font-medium text-white
+           transition-all duration-300 hover:shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--destructive)), hsl(0 84% 50%));
+  }
+
+  /* Input Field */
+  .health-input {
+    @apply w-full px-4 py-3 rounded-xl border border-border bg-white/80
+           focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+           transition-all duration-200 placeholder:text-muted-foreground;
+  }
+
+  /* Checkbox */
+  .health-checkbox {
+    @apply w-5 h-5 rounded border-2 border-primary/40 
+           checked:bg-primary checked:border-primary
+           focus:ring-2 focus:ring-primary/30 transition-all cursor-pointer;
+  }
+
+  /* Profile Card */
+  .profile-card {
+    @apply glass-card p-6 cursor-pointer transition-all duration-300
+           hover:shadow-2xl hover:scale-[1.02] hover:border-primary/30;
+  }
+
+  /* Critical Level Badges */
+  .badge-low {
+    @apply px-4 py-2 rounded-full font-semibold text-sm;
+    background: hsl(var(--health-green) / 0.15);
+    color: hsl(var(--health-green));
+    border: 1px solid hsl(var(--health-green) / 0.3);
+  }
+
+  .badge-moderate {
+    @apply px-4 py-2 rounded-full font-semibold text-sm;
+    background: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning));
+    border: 1px solid hsl(var(--warning) / 0.3);
+  }
+
+  .badge-high {
+    @apply px-4 py-2 rounded-full font-semibold text-sm;
+    background: hsl(var(--destructive) / 0.15);
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.3);
+  }
+
+  /* Icon Container */
+  .icon-container {
+    @apply w-14 h-14 rounded-xl flex items-center justify-center;
+  }
+
+  .icon-primary {
+    @apply icon-container;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--health-green)));
+  }
+
+  .icon-warning {
+    @apply icon-container;
+    background: linear-gradient(135deg, hsl(var(--warning)), hsl(38 92% 60%));
+  }
+
+  .icon-danger {
+    @apply icon-container;
+    background: linear-gradient(135deg, hsl(var(--destructive)), hsl(0 84% 55%));
+  }
+
+  .icon-green {
+    @apply icon-container;
+    background: hsl(var(--health-green) / 0.15);
+    color: hsl(var(--health-green));
+  }
+
+  .icon-orange {
+    @apply icon-container;
+    background: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning));
+  }
+
+  /* Navigation Bar */
+  .nav-bar {
+    @apply fixed top-0 left-0 right-0 z-50 px-4 py-3;
+    background: hsl(var(--card-glass));
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-xl font-semibold text-foreground mb-2;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Notification Toast */
+  .notification-toast {
+    @apply glass-card p-4 flex items-start gap-3 animate-slide-in;
+    box-shadow: 0 10px 40px -10px hsl(var(--primary) / 0.3);
+  }
+
+  /* Meal/Exercise Card */
+  .wellness-card {
+    @apply glass-card p-4 transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* Form Section */
+  .form-section {
+    @apply glass-card p-6 space-y-4;
+  }
+
+  /* Page Container */
+  .page-container {
+    @apply min-h-screen pt-20 pb-8 px-4;
+  }
+
+  /* Content Container */
+  .content-container {
+    @apply max-w-lg mx-auto space-y-6;
+  }
+}
+
+@layer utilities {
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+}
